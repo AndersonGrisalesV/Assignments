@@ -1,6 +1,22 @@
 import PropTypes from "prop-types";
 
-const RowComponent = ({ id, name, email, university, gender, age }) => {
+// type RowProps = InferProps<typeof RowComponent.propTypes>;
+
+const RowComponent = ({
+  id,
+  name,
+  email,
+  university,
+  gender,
+  age,
+}: {
+  id: number;
+  name: string;
+  email: string;
+  university: string;
+  gender: string;
+  age: number;
+}) => {
   return (
     <tr>
       <td>{id}</td>

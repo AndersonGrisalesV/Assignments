@@ -3,14 +3,28 @@ import RowComponent from "./RowComponent";
 
 import "./App.css";
 
+interface User {
+  id: number;
+  firstName: string;
+  email: string;
+  university: string;
+  gender: string;
+  age: number;
+}
+
+interface Response {
+  users: User[];
+}
+
 function App() {
-  const [loadedData, setLoadedData] = useState([]);
-  const [countUsers, setCountUsers] = useState(5);
-  const [activeFilterByAge, setActiveFilterByAge] = useState(false);
-  const [activeFilterByGender, setActiveFilterByGender] = useState(false);
-  const [selectValue, setSelectValue] = useState("gender");
-  const [filteredByAge, setFilteredByAge] = useState([]);
-  const [filteredByGender, setFilteredByGender] = useState([]);
+  const [loadedData, setLoadedData] = useState<User[]>([]);
+  const [countUsers, setCountUsers] = useState<number>(5);
+  const [activeFilterByAge, setActiveFilterByAge] = useState<boolean>(false);
+  const [activeFilterByGender, setActiveFilterByGender] =
+    useState<boolean>(false);
+  const [selectValue, setSelectValue] = useState<string>("gender");
+  const [filteredByAge, setFilteredByAge] = useState<User[]>([]);
+  const [filteredByGender, setFilteredByGender] = useState<User[]>([]);
 
   // This block uses the useEffect hook to fetch data from a server using an async function.
   // The server URL is obtained from the environment variables using import.meta.env.
@@ -21,14 +35,14 @@ function App() {
           `${import.meta.env.VITE_BACKEND_URL}/users`
         );
         if (response.ok) {
-          const data = await response.json();
+          const data: Response = await response.json();
           setLoadedData(data.users.slice(0, 5));
         } else {
           throw new Error("Network response was not ok.");
         }
-      } catch (error) {
+      } catch (error: unknown) {
         console.error(error); // Any errors encountered during the fetch are logged to the console
-        alert(error.message);
+        alert(error);
       }
     }
 
@@ -48,7 +62,7 @@ function App() {
       const responseData = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/users`
       );
-      const data = await responseData.json();
+      const data: Response = await responseData.json();
       // Display only the first 5 users
       setLoadedData(data.users.slice(0, 5));
     } catch (error) {
@@ -61,9 +75,8 @@ function App() {
   // A function to handle filter by age button click event
   const handleFilterByAge = () => {
     // Set active filter by age flag to true and reset other flags
-
     setActiveFilterByAge(true);
-    // setSelectValue("gender");
+    setSelectValue("gender");
     setActiveFilterByGender(false);
     setFilteredByGender([]);
     setCountUsers(5);
@@ -91,18 +104,18 @@ function App() {
       );
       const data = await responseData.json();
 
-      let filteredData;
-
-      filteredData = data.users.filter((item) => item.gender === selectValue);
+      let filteredData = data.users.filter(
+        (item: { gender: string }) => item.gender === selectValue
+      );
 
       if (activeFilterByAge) {
-        filteredData = filteredData.sort((a, b) => a.age - b.age);
+        filteredData = filteredData.sort((a: User, b: User) => a.age - b.age);
         setFilteredByAge(filteredData.slice(0, countUsers));
         setLoadedData(filteredData.slice(0, countUsers));
       }
 
       setFilteredByGender(filteredData.slice(0, countUsers));
-    } catch (error) {
+    } catch (error: unknown) {
       console.error(error);
       alert(error);
       // display error message to user using a message or alert box
@@ -112,7 +125,7 @@ function App() {
   };
 
   // A function to load more data based on active filters and user count
-  const handleMoreData = async () => {
+  const handleMoreData = async (): Promise<void> => {
     // check if gender filter is active and age filter is not active
     if (activeFilterByGender && !activeFilterByAge) {
       // Fetch all users from the backend
@@ -124,7 +137,7 @@ function App() {
         let i = 0;
         // filter the data by gender and update the filteredByGender state with additional 5 records
         setFilteredByGender(
-          data.users.filter((item) => {
+          data.users.filter((item: User) => {
             if (item.gender === selectValue && i < countUsers + 5) {
               i++; // increment the counter if the gender matches and count is less than maxValue
               return true; // include the item in the filtered array
@@ -132,9 +145,9 @@ function App() {
             return false; // exclude the item from the filtered array
           })
         );
-      } catch (error) {
+      } catch (error: unknown) {
         console.error(error);
-        alert(error);
+        alert(String(error));
         // display error message to user using toast message or alert box
       }
     } else {
@@ -148,22 +161,24 @@ function App() {
         if (activeFilterByAge && !activeFilterByGender) {
           // update the filteredByAge state with additional 5 records sorted by age
           setFilteredByAge(
-            data.users.slice(0, countUsers + 5).sort((a, b) => a.age - b.age)
+            data.users
+              .slice(0, countUsers + 5)
+              .sort((a: User, b: User) => a.age - b.age)
           );
         } else {
           // if no filter is active then update the loadedData state with additional 5 records
           setLoadedData(data.users.slice(0, countUsers + 5));
         }
-      } catch (error) {
+      } catch (error: unknown) {
         console.error(error);
-        alert(error);
+        alert(String(error));
         // display error message to user using toast message or alert box
       }
     }
     setCountUsers(countUsers + 5);
   };
 
-  const handleSelectChange = (e) => {
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectValue(e.target.value);
     if (e.target.value === "gender") {
       handleReset();
@@ -181,7 +196,9 @@ function App() {
             <th>University</th>
             <th
               className="gender"
-              onClick={selectValue !== "gender" ? handleFilterByGender : null}
+              onClick={
+                selectValue !== "gender" ? handleFilterByGender : undefined
+              }
             >
               <select
                 value={selectValue}
