@@ -1,0 +1,265 @@
+* {
+  background-color: #1f1d2b;
+  font-family: "Poppins", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 0px;
+  /* height: 5px; */
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, transparent, transparent);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #16151f, #16151f);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #16151f, #16151f);
+}
+
+.container-outside {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 38px;
+}
+
+.container-inside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 43px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  border: 1px none;
+
+  padding: 27px 15px;
+  width: 290px;
+
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #252836;
+}
+
+.card-title {
+  background-color: #252836;
+  padding: 0px 0px 18px 14px;
+  margin-top: -6px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 22px;
+  color: #92939a;
+  margin: 0px;
+  margin-top: 5px;
+  background-color: #252836;
+}
+
+.card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  padding: 5px 0px 18px 14px;
+  background-color: #252836;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  padding: 0px 0px 0px 18px;
+  background-color: #252836;
+}
+
+.card h2 {
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  line-height: 23px;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  margin: 0px;
+  background-color: #252836;
+}
+
+.card p {
+  color: #92939a;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  line-height: 20px;
+
+  margin: 0px;
+  margin-top: 5px;
+  background-color: #252836;
+}
+
+.flag-usa {
+  display: inline-block;
+  background-image: url("./images/usa.png");
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+  background-color: #252836;
+}
+
+.flag-indonisia {
+  display: inline-block;
+  background-image: url("./images/indonisia.png");
+  background-size: cover;
+  width: 10px;
+  height: 10px;
+  background-color: #252836;
+}
+
+@media only screen and (max-width: 740px) {
+  .container-outside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 38px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .container-outside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 38px;
+    width: 100%;
+  }
+
+  .container-inside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 43px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px none;
+
+    padding: 27px 15px;
+    width: 226px;
+
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #252836;
+  }
+
+  .card-title {
+    background-color: #252836;
+    padding: 0px 0px 18px 14px;
+    margin-top: -8px;
+  }
+
+  .title {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 22px;
+    color: #92939a;
+    margin: 0px;
+    margin-top: 5px;
+    background-color: #252836;
+  }
+
+  .card img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    padding: 0px 0px 14px 14px;
+    background-color: #252836;
+  }
+
+  .card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    padding: 0px 0px 0px 18px;
+    background-color: #252836;
+  }
+
+  .card h2 {
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    line-height: 23px;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    margin: 0px;
+    background-color: #252836;
+  }
+
+  .card p {
+    color: #92939a;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+
+    margin: 0px;
+    margin-top: 0px;
+    background-color: #252836;
+  }
+
+  .flag-usa {
+    display: inline-block;
+    background-image: url("./images/usa.png");
+    background-size: cover;
+    width: 15px;
+    height: 15px;
+    background-color: #252836;
+  }
+
+  .flag-indonisia {
+    display: inline-block;
+    background-image: url("./images/indonisia.png");
+    background-size: cover;
+    width: 10px;
+    height: 10px;
+    background-color: #252836;
+  }
+}
